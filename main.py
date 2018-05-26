@@ -45,7 +45,7 @@ async def onlinestuff():
     roles = {naflag: na, euflag: eu, wiiuflag: wiiu, switchflag: switch}
     api = twitter.Api(
         consumer_key=TCK,
-        cosumer_secret=TCS,
+        consumer_secret=TCS,
         access_token_key=TATC,
         access_token_secret=TATS)
     t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
