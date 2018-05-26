@@ -46,7 +46,6 @@ async def onlinestuff():
 
 
 async def reactioncheck():
-    print("Hi")
     global message, roles
     a = []
     for x in server.members:
@@ -67,17 +66,14 @@ async def reactioncheck():
         #except:
             pass
     for c in a:
-        print("Hello")
         for e in roles:
             if len(c) == 1:
                 if roles[e] in c[0].roles:
                     await c[0].remove_roles(roles[e])
-                    print("Salut")
             else:
-                print("Bonjour")
                 if roles[e] in c:
-                    print(c[0].name,roles[e].name)
-                    await c[0].add_roles(roles[e])
+                    if roles[e] not in c[0].roles:
+                        await c[0].add_roles(roles[e])
                 else:
                     #print("Bye")
                     if roles[e] in c[0].roles:
