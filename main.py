@@ -40,13 +40,12 @@ async def onlinestuff():
 @client.event
 async def on_raw_reaction_add(payload):
     global person
-    await person.send(payload)"""
-    global server, channel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag
+    await person.send(payload)
+    """global server, channel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag
     if reaction.message.channel == channel:
         try:
             role = roles[reaction.emoji]
             await user.add_roles(role)
         except KeyError:
-            pass
-"""
+            pass"""
 client.run(TOKEN)      
