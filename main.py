@@ -55,5 +55,7 @@ async def reactioncheck():
         except:
             pass
     
-client.loop.create_task(reactioncheck())
 client.run(TOKEN)
+
+time.sleep(10)
+client.loop.create_task(reactioncheck())
