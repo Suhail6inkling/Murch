@@ -1,0 +1,28 @@
+{
+  "name": "R.O.B.",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.py",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node main.py"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Suhail6inkling/Switchlings-Bot"
+  },
+  "author": "Suhail Merali",
+  "license": ""
+  },
+  "dependencies": {
+    "hapi": "^8.4.0",
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+  }
+}
