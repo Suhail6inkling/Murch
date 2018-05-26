@@ -40,7 +40,7 @@ async def onlinestuff():
 @client.event
 async def on_reaction_add(reaction,user):
     global server, channel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag
-    if reaction.message.channel = channel:
+    if reaction.message.channel == channel:
         try:
             role = roles[reaction.emoji]
             await user.add_roles(role)
