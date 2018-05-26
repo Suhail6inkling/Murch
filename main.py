@@ -2,12 +2,16 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio, random, os, time#, psycopg2
-
+import twitter
 
 try:
-    from config import TOKEN
+    from config import TOKEN, TCK, TCS, TATC, TATS
 except ModuleNotFoundError:
     TOKEN = os.environ["TOKEN"]
+    TCK = os.environ["TCK"]
+    TCS = os.environ["TCS"]
+    TATC = os.environ["TATC"]
+    TATS = os.environ["TATS"]
 
 
 client = discord.Client()
@@ -39,6 +43,17 @@ async def onlinestuff():
     wiiuflag = u"\U0001F535"
     switchflag = u"\U0001F534"
     roles = {naflag: na, euflag: eu, wiiuflag: wiiu, switchflag: switch}
+    api = twitter.Api(
+        consumer_key=TCK,
+        cosumer_secret=TCS,
+        access_token_key=TATK,
+        access_token_secret=TATS)
+    t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
+    tweets = [i.AsDict() for i in t]
+    await person.send(tweets)
+        
+
+    
     while True:
         await reactioncheck()
 
