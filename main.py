@@ -47,6 +47,7 @@ async def onlinestuff():
 
 async def reactioncheck():
     global message, roles
+    a = []
     reactions = message.reactions
     for reaction in reactions:
         try:
@@ -54,11 +55,25 @@ async def reactioncheck():
             users = await reaction.users().flatten()
             for user in users:
                 try:
-                    await user.add_roles(role)
+                    #await user.add_roles(role)
+                    b = True
+                    for p in a:
+                        if p == user:
+                            p.append(role)
+                            b=False
+                    if b:
+                        a.append([user,role])
                 except:
                     pass
+            
         except:
             pass
+    for e in roles:
+        for c in a:
+            if e in c:
+                c[0].add_roles(e)
+            else:
+                c[0].remove_roles(e)
     
 client.run(TOKEN)
 
