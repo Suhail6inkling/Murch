@@ -23,8 +23,9 @@ async def on_ready():
     await onlinestuff()
 
 async def onlinestuff():
-    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag
-    server = discord.get_guild(428632636492087296)
+    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag, person
+    person = client.get_user(131131701148647424)
+    server = client.get_guild(428632636492087296)
     channel = discord.utils.get(server.channels, name = "gateway-2")
     wiiu = discord.utils.get(server.roles, name = "Wii U Owner")
     switch = discord.utils.get(server.roles, name = "Switch Owner")
