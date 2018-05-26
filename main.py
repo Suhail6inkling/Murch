@@ -46,34 +46,43 @@ async def onlinestuff():
 
 
 async def reactioncheck():
+    print("Hi")
     global message, roles
     a = []
+    for x in server.members:
+        a.append([x])
     reactions = message.reactions
     for reaction in reactions:
-        try:
+        #try:
             role = roles[reaction.emoji]
             users = await reaction.users().flatten()
             for user in users:
-                try:
-                    #await user.add_roles(role)
-                    b = True
+                #try:
                     for p in a:
-                        if p == user:
+                        if p[0] == user:
                             p.append(role)
-                            b=False
-                    if b:
-                        a.append([user,role])
-                except:
+                #except:
                     pass
             
-        except:
+        #except:
             pass
-    for e in roles:
-        for c in a:
-            if e in c:
-                c[0].add_roles(e)
+    for c in a:
+        print("Hello")
+        for e in roles:
+            if len(c) == 1:
+                if roles[e] in c[0].roles:
+                    await c[0].remove_roles(roles[e])
+                    print("Salut")
             else:
-                c[0].remove_roles(e)
+                print("Bonjour")
+                if roles[e] in c:
+                    print(c[0].name,roles[e].name)
+                    await c[0].add_roles(roles[e])
+                else:
+                    #print("Bye")
+                    if roles[e] in c[0].roles:
+                        await c[0].remove_roles(roles[e])
     
 client.run(TOKEN)
 
+    
