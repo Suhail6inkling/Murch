@@ -23,9 +23,10 @@ async def on_ready():
     await onlinestuff()
 
 async def onlinestuff():
-    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag, person
+    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag, person, message
     person = client.get_user(131131701148647424)
     server = client.get_guild(428632636492087296)
+    message = client.get_message(449977173059829760)
     channel = discord.utils.get(server.channels, name = "gateway-2")
     wiiu = discord.utils.get(server.roles, name = "Wii U Owner")
     switch = discord.utils.get(server.roles, name = "Switch Owner")
@@ -38,15 +39,21 @@ async def onlinestuff():
     roles = {naflag: na, euflag: eu, wiiuflag: wiiu, switchflag: switch}
 
 
-@client.event
-async def on_raw_reaction_add(payload):
-    global person
-    await person.send(payload)
-    """global server, channel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag
-    if reaction.message.channel == channel:
+
+async def reactioncheck():
+    global message
+    reactions = message.reactions
+    for reaction in reactions:
         try:
             role = roles[reaction.emoji]
-            await user.add_roles(role)
-        except KeyError:
-            pass"""
-client.run(TOKEN)      
+            users = await reaction.users().flatten()
+            for user in reaction.users():
+                try:
+                    await user.add_roles(role)
+                except:
+                    pass
+        except:
+            pass
+    
+client.loop.create_task(reactioncheck())
+client.run(TOKEN)
