@@ -7,7 +7,7 @@ import asyncio, random, os, time, psycopg2
 try:
     from config import TOKEN
 except ModuleNotFoundError:
-    TOKEN = os.environ(TOKEN)
+    TOKEN = os.environ["TOKEN"]
 
 
 client = discord.Client()
@@ -38,7 +38,9 @@ async def onlinestuff():
 
 
 @client.event
-async def on_reaction_add(reaction,user):
+async def on_raw_reaction_add(payload):
+    global person
+    await person.send(payload)"""
     global server, channel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag
     if reaction.message.channel == channel:
         try:
@@ -46,5 +48,5 @@ async def on_reaction_add(reaction,user):
             await user.add_roles(role)
         except KeyError:
             pass
-
+"""
 client.run(TOKEN)      
