@@ -23,12 +23,12 @@ async def on_ready():
     await onlinestuff()
 
 async def onlinestuff():
-    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag, person, message
+    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag, person, message, roles
     person = client.get_user(131131701148647424)
     server = client.get_guild(428632636492087296)
     print(person,server)
     channel = discord.utils.get(server.channels, name = "gateway-2")
-    message = channel.get_message(449977173059829760)
+    message = await channel.get_message(449977173059829760)
     print(message)
     wiiu = discord.utils.get(server.roles, name = "Wii U Owner")
     switch = discord.utils.get(server.roles, name = "Switch Owner")
@@ -39,22 +39,21 @@ async def onlinestuff():
     wiiuflag = u"\U0001F535"
     switchflag = u"\U0001F534"
     roles = {naflag: na, euflag: eu, wiiuflag: wiiu, switchflag: switch}
-    client.loop.create_task(reactioncheck())
+    while True:
+        await reactioncheck()
+
 
 
 
 async def reactioncheck():
-    print("Hi")
-    global message
+    global message, roles
     reactions = message.reactions
     for reaction in reactions:
         try:
-            print("Hello")
             role = roles[reaction.emoji]
             users = await reaction.users().flatten()
-            for user in reaction.users():
+            for user in users:
                 try:
-                    print("Bonjour")
                     await user.add_roles(role)
                 except:
                     pass
@@ -62,3 +61,4 @@ async def reactioncheck():
             pass
     
 client.run(TOKEN)
+
