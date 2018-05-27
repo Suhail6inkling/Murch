@@ -74,7 +74,9 @@ async def regular(ctx):
     for tweet in tweets:
         if "Turf War" in tweet["text"]:
             map1 = tweet["text"].split("Turf War maps: ")[1]
+            map1 = map1.split(" &amp;")[0]
             map2 = tweet["text"].split("&amp;")[1]
+            map2 = map2.split(" #Splatoon2")[0]
             map1photo = tweet["media"][0]["media_url"]
             map2photo = tweet["media"][1]["media_url"]
             embed = discord.Embed(title = "Regular Battle", description="""
@@ -85,7 +87,7 @@ Turf War
 {}
 {}""".format(map1,map2),colour=0x19D619)
             await ctx.send(embed=embed)
-            await ctx.send("{}{}".format(map1photo,map2photo))
+            await ctx.send("{} {}".format(map1photo,map2photo))
 
 
 
