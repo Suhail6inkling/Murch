@@ -75,7 +75,7 @@ async def regular(ctx):
         if "Turf War" in tweet["text"]:
             map1 = tweet["text"].split("Turf War maps: ")[1]
             map1 = map1.split(" &amp;")[0]
-            map2 = tweet["text"].split("&amp;")[1]
+            map2 = tweet["text"].split("&amp; ")[1]
             map2 = map2.split(" #Splatoon2")[0]
             map1photo = tweet["media"][0]["media_url"]
             map2photo = tweet["media"][1]["media_url"]
@@ -99,9 +99,11 @@ async def ranked(ctx):
         if "Ranked Battle" in tweet.text:
             mode = tweet.text.split("Ranked Battle maps — ")[1]
             map1 = tweet.text.split(": ")[1]
-            map2 = tweet.text.split("&amp;")[1]
-            map1photo = tweet.media[0]["media_url"]
-            map2photo = tweet.media[1]["media_url"]
+            map1 = map1.split(" &amp;")[0]
+            map2 = tweet["text"].split("&amp; ")[1]
+            map2 = map2.split(" #Splatoon2")[0]
+            map1photo = tweet["media"][0]["media_url"]
+            map2photo = tweet["media"][1]["media_url"]
             embed = discord.Embed(title = "Ranked Battle", description="""
 **Mode:**
 {}
@@ -110,7 +112,7 @@ async def ranked(ctx):
 {}
 {}""".format(mode,map1,map2),colour=0xF44910)
             await ctx.send(embed=embed)
-            await ctx.send("{}{}".format(map1photo,map2photo))
+            await ctx.send("{} {}".format(map1photo,map2photo))
 
 @stages.command(pass_context=True)
 async def league(ctx):
@@ -120,9 +122,11 @@ async def league(ctx):
         if "League Battle" in tweet.text:
             mode = tweet.text.split("League Battle maps — ")[1]
             map1 = tweet.text.split(": ")[1]
-            map2 = tweet.text.split("&amp;")[1]
-            map1photo = tweet.media[0]["media_url"]
-            map2photo = tweet.media[1]["media_url"]
+            map1 = map1.split(" &amp;")[0]
+            map2 = tweet["text"].split("&amp; ")[1]
+            map2 = map2.split(" #Splatoon2")[0]
+            map1photo = tweet["media"][0]["media_url"]
+            map2photo = tweet["media"][1]["media_url"]
             embed = discord.Embed(title = "League Battle", description="""
 **Mode:**
 {}
@@ -131,7 +135,7 @@ async def league(ctx):
 {}
 {}""".format(mode,map1,map2),colour=0xEE2D7C)
             await ctx.send(embed=embed)
-            await ctx.send("{}{}".format(map1photo,map2photo))
+            await ctx.send("{} {}".format(map1photo,map2photo))
 
 
 
