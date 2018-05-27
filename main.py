@@ -16,7 +16,7 @@ except ModuleNotFoundError:
 
 client = discord.Client()
 prefix = "."
-cleint = commands.Bot(command_prefix=prefix)
+client = commands.Bot(command_prefix=prefix)
 
 @client.event
 async def on_ready():
