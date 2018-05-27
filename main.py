@@ -70,7 +70,7 @@ async def stages(ctx):
 @stages.command(pass_context=True)
 async def regular(ctx):
     t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
-    for tweet in tweets:
+    for tweet in t:
         if "Turf War" in tweet.text:
             map1 = tweet.text.split("Turf War maps: ")[1]
             map2 = tweet.text.split("&amp;")[1]
