@@ -111,7 +111,7 @@ async def ranked(ctx):
             await ctx.send("{}{}".format(map1photo,map2photo))
 
 @stages.command(pass_context=True)
-async def ranked(ctx):
+async def league(ctx):
     t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
     tweets = [i.AsDict() for i in t]
     for tweet in tweets:
