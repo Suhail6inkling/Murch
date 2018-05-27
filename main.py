@@ -98,6 +98,7 @@ async def ranked(ctx):
     for tweet in tweets:
         if "Ranked Battle" in tweet["text"]:
             mode = tweet["text"].split("Ranked Battle maps — ")[1]
+            mode = mode.split(": ")[1]
             map1 = tweet["text"].split(": ")[1]
             map1 = map1.split(" &amp;")[0]
             map2 = tweet["text"].split("&amp; ")[1]
@@ -121,6 +122,7 @@ async def league(ctx):
     for tweet in tweets:
         if "League Battle" in tweet["text"]:
             mode = tweet["text"].split("League Battle maps — ")[1]
+            mode = mode.split(": ")[1]
             map1 = tweet["text"].split(": ")[1]
             map1 = map1.split(" &amp;")[0]
             map2 = tweet["text"].split("&amp; ")[1]
