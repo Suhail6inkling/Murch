@@ -157,6 +157,8 @@ async def reactioncheck():
                     for p in a:
                         if p[0] == user:
                             p.append(role)
+
+
                 #except:
                     pass
             
@@ -167,14 +169,17 @@ async def reactioncheck():
             if len(c) == 1:
                 if roles[e] in c[0].roles:
                     await c[0].remove_roles(roles[e])
+                    print(c[0], roles[e], "-")
             else:
                 if roles[e] in c:
                     if roles[e] not in c[0].roles:
-                        await c[0].add_roles(roles[e])
+                        await c[0].add_roles(roles[e])  
+                        print(c[0], roles[e], "+")
                 else:
                     #print("Bye")
                     if roles[e] in c[0].roles:
                         await c[0].remove_roles(roles[e])
+                        print(c[0], roles[e], "-")
     
 client.run(TOKEN)
 
