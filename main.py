@@ -98,7 +98,7 @@ async def ranked(ctx):
     for tweet in tweets:
         if "Ranked Battle" in tweet["text"]:
             mode = tweet["text"].split("Ranked Battle maps — ")[1]
-            mode = mode.split(": ")[1]
+            mode = mode.split(": ")[0]
             map1 = tweet["text"].split(": ")[1]
             map1 = map1.split(" &amp;")[0]
             map2 = tweet["text"].split("&amp; ")[1]
