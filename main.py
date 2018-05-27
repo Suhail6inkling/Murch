@@ -60,7 +60,7 @@ async def onlinestuff():
 
 @client.group(pass_context=True)
 async def stages(ctx):
-    if client.invoked_subcommand == None:
+    if ctx.invoked_subcommand == None:
         await ctx.send("""Available Modes:
 ```md
 <.stages regular>
