@@ -15,7 +15,7 @@ except ModuleNotFoundError:
 
 
 client = discord.Client()
-prefix = "d."
+prefix = "."
 cleint = commands.Bot(command_prefix=prefix)
 
 @client.event
@@ -23,11 +23,11 @@ async def on_ready():
     print("Bot Online!")
     print("Name: {}".format(client.user.name))
     print("ID: {}".format(client.user.id))
-    await client.change_presence(activity = discord.Game(name="Say d.help"))
+    await client.change_presence(activity = discord.Game(name="Exclusively for 'Splat Hub!'"))
     await onlinestuff()
 
 async def onlinestuff():
-    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag, person, message, roles
+    global server, channnel, wiiu, switch, na, eu, naflag, euflag, wiiuflag, switchflag, person, message, roles, api
     person = client.get_user(131131701148647424)
     server = client.get_guild(428632636492087296)
     print(person,server)
@@ -50,12 +50,86 @@ async def onlinestuff():
         access_token_secret=TATS)
     t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
     tweets = [i.AsDict() for i in t]
-    print(tweets)
+    print(tweets)   
         
 
     
     while True:
         await reactioncheck()
+
+
+@client.group(pass_context=True)
+async def stages(ctx):
+    if client.invoked_subcommand = None:
+        await ctx.send("""Available Modes:
+```md
+<.stages regular>
+<.stages ranked>
+<.stages league>```""")
+
+@stages.command(pass_context=True)
+async def regular(ctx):
+    t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
+    tweets = [i.AsDict() for i in t]
+    for tweet in tweets:
+        if "Turf War" in tweet.text:
+            map1 = tweet.text.split("Turf War maps: ")[1]
+            map2 = tweet.text.split("&amp;")[1]
+            map1photo = tweet.media[0]["media_url"]
+            map2photo = tweet.media[1]["media_url"]
+            embed = discord.Embed(title = "Regular Battle", description="""
+**Mode:**
+Turf War
+
+**Maps:**
+{}
+{}""".format(map1,map2),colour=0x19D619)
+            await ctx.send(embed=embed)
+            await ctx.send("{}{}".format(map1photo,map2photo))
+
+
+
+@stages.command(pass_context=True)
+async def ranked(ctx):
+    t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
+    tweets = [i.AsDict() for i in t]
+    for tweet in tweets:
+        if "Ranked Battle" in tweet.text:
+            mode = tweet.text.split("Ranked Battle maps — ")[1]
+            map1 = tweet.text.split(": ")[1]
+            map2 = tweet.text.split("&amp;")[1]
+            map1photo = tweet.media[0]["media_url"]
+            map2photo = tweet.media[1]["media_url"]
+            embed = discord.Embed(title = "Ranked Battle", description="""
+**Mode:**
+{}
+
+**Maps:**
+{}
+{}""".format(mode,map1,map2),colour=0xF44910)
+            await ctx.send(embed=embed)
+            await ctx.send("{}{}".format(map1photo,map2photo))
+
+@stages.command(pass_context=True)
+async def ranked(ctx):
+    t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
+    tweets = [i.AsDict() for i in t]
+    for tweet in tweets:
+        if "League Battle" in tweet.text:
+            mode = tweet.text.split("League Battle maps — ")[1]
+            map1 = tweet.text.split(": ")[1]
+            map2 = tweet.text.split("&amp;")[1]
+            map1photo = tweet.media[0]["media_url"]
+            map2photo = tweet.media[1]["media_url"]
+            embed = discord.Embed(title = "League Battle", description="""
+**Mode:**
+{}
+
+**Maps:**
+{}
+{}""".format(mode,map1,map2),colour=0xEE2D7C)
+            await ctx.send(embed=embed)
+            await ctx.send("{}{}".format(map1photo,map2photo))
 
 
 
