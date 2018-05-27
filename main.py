@@ -72,7 +72,7 @@ async def regular(ctx):
     t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
     tweets = [i.AsDict() for i in t]
     for tweet in tweets:
-        if "Turf War" in tweet.text:
+        if "Turf War" in tweet["text"]:
             map1 = tweet["text"].split("Turf War maps: ")[1]
             map2 = tweet["text"].split("&amp;")[1]
             map1photo = tweet["media"][0]["media_url"]
