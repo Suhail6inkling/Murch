@@ -165,11 +165,11 @@ async def reactioncheck():
             pass
     for c in a:
         for e in roles:
-            if len(c) == 1:
-                if roles[e] in c[0].roles:
-                    await c[0].remove_roles(roles[e])
-                    print(c[0], roles[e], "-")
-            else:
+##            if len(c) == 1:
+##                if roles[e] in c[0].roles:
+##                    await c[0].remove_roles(roles[e])
+##                    print(c[0], roles[e], "-")
+##            else:
                 if roles[e] in c:
                     if roles[e] not in c[0].roles:
                         await c[0].add_roles(roles[e])  
