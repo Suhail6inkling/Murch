@@ -50,7 +50,6 @@ async def onlinestuff():
         access_token_secret=TATS)
     t = api.GetUserTimeline(screen_name="splatoon2maps", count=3)
     tweets = [i.AsDict() for i in t]
-    print(tweets)   
         
 
     
