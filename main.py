@@ -44,6 +44,7 @@ async def onlinestuff():
     alerts = discord.utils.get(server.roles, name = "Alerts")
     
     while True:
+        await asyncio.sleep(5)
         await reactioncheck1()
         await reactioncheck2()
 
