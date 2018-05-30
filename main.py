@@ -78,19 +78,23 @@ async def reactioncheck2():
     global message2, superseasnail, alerts
     a = []
     for x in server.members:
-        a.append(x)
+        a.append([x,False])
     reactions = message2.reactions
     for reaction in [q for q in reactions if q.emoji == superseasnail]:
         users = await reaction.users().flatten()
         for user in users:
-            if alerts not in user.roles:
-                await user.add_roles(alerts)
-                print(user, alerts, "+")
-            a.remove(user)
+            for p in a:
+                if p[0] == user:
+                    p[1] = True
         for c in a:
-            if alerts in c.roles:
-                await c.remove_roles(alerts)
-                print(c, alerts, "-")
+            if c[1]:
+                if alerts not in c[0].roles:
+                    await c[0].add_roles(alerts)
+                    print(c[0], alerts, "+")
+            else:
+                if alerts in c[0].roles:
+                    await c[0].remove_roles(alerts)
+                    print(c[0], alerts, "-")
                 
             
 client.run(TOKEN)
