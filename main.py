@@ -41,7 +41,7 @@ async def onlinestuff():
     channel2 = discord.utils.get(server.channels, name= "server-updates")
     message2 = await channel2.get_message(451113983345164289)
     superseasnail = discord.utils.get(server.emojis, name="SuperSeaSnail")
-    alerts = discord.utils.get(server.roels, name = "Alerts")
+    alerts = discord.utils.get(server.roles, name = "Alerts")
     
     while True:
         await reactioncheck1()
