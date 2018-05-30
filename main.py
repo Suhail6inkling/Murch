@@ -53,7 +53,7 @@ async def reactioncheck1():
     a = []
     for x in server.members:
         a.append([x])
-    reactions = message.reactions
+    reactions = message1.reactions
     for reaction in reactions:
             role = roles[reaction.emoji]
             users = await reaction.users().flatten()
@@ -79,7 +79,7 @@ async def reactioncheck2():
     a = []
     for x in server.members:
         a.append(x)
-    reactions = message.reactions
+    reactions = message2.reactions
     for reaction in [q for q in reactions if q.emoji == superseasnail]:
         users = await reaction.users().flatten()
         for user in users:
