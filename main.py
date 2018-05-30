@@ -80,7 +80,7 @@ async def reactioncheck2():
     for x in server.members:
         a.append(x)
     reactions = message.reactions
-    for [reaction in reactions if reaction.emoji == superseasnail]:
+    for reaction in [q for q in reactions if q.emoji == superseasnail]:
         users = await reaction.users().flatten()
         for user in users:
             if alerts not in user.roles:
