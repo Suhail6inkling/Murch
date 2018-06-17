@@ -600,6 +600,8 @@ Main: {}
                 pronouna="They"
             member = person.id
             global people
+            gsheets.open()
+            people = gsheets.read()
             for x in people:
                 if x["ID"] == member:
                     personlist = x
