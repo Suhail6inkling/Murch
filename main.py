@@ -12,7 +12,7 @@ except ModuleNotFoundError:
 
 client = discord.Client()
 client = commands.Bot(command_prefix=prefix)
-startupextensions=["splatooncommands"]
+startup_extensions=["splatooncommands"]
 
 @client.event
 async def on_ready():
