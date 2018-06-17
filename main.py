@@ -2,16 +2,17 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio, random, os, time#, psycopg2
-
+import gsheets
 try:
-    from config import TOKEN
+    from config import TOKEN, prefix
 except ModuleNotFoundError:
     TOKEN = os.environ["TOKEN"]
+    prefix = os.environ["prefix"]
 
 
 client = discord.Client()
-prefix = "."
 client = commands.Bot(command_prefix=prefix)
+startupextensions=["splatooncommands"]
 
 @client.event
 async def on_ready():
@@ -42,11 +43,39 @@ async def onlinestuff():
     message2 = await channel2.get_message(451113983345164289)
     superseasnail = discord.utils.get(server.emojis, name="SuperSeaSnail")
     alerts = discord.utils.get(server.roles, name = "Alerts")
-    
+    await onlinestuff2()
+   
     while True:
-        await asyncio.sleep(5)
         await reactioncheck1()
         await reactioncheck2()
+
+
+async def onlinestuff2():
+    global server
+    for x in server.members:
+        gsheets.open()
+        y = [gsheets.lenrows(),str(member.id)]
+        for z in range(0,28):
+            y.append("None")
+        gsheets.addrow(y)
+
+
+@client.event
+async def on_member_join(member):
+    gsheets.open()
+    values = [gsheets.lenrows(),str(member.id)]
+    for x in range(0, 28):
+        values.append("None")
+        gsheets.addrow(values)
+
+@client.event
+async def on_member_remove(member):
+    gsheets.open()
+    people = gsheets.read()
+    for x in people:
+        if x["ID"] == member.id:
+            personlist = x
+    gsheets.delrow(personlist["Place in Queue"])
 
 
 async def reactioncheck1():
@@ -97,6 +126,14 @@ async def reactioncheck2():
                     await c[0].remove_roles(alerts)
                     print(c[0], alerts, "-")
                 
+
+if __name__ == "__main__":
+    for extension in startup_extensions:
+        try:
+            client.load_extension(extension)
+        except Exception as e:
+            exc = '{}: {}'.format(type(e).__name__, e)
+            print('Failed to load extension {}\n{}'.format(extension, exc))
             
 client.run(TOKEN)
 
