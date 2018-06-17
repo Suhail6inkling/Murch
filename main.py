@@ -39,15 +39,15 @@ async def onlinestuff():
     switchflag = u"\U0001F534"
     roles = {naflag: na, euflag: eu, wiiuflag: wiiu, switchflag: switch}
     
-    channel2 = discord.utils.get(server.channels, name= "server-updates")
-    message2 = await channel2.get_message(451113983345164289)
-    superseasnail = discord.utils.get(server.emojis, name="SuperSeaSnail")
-    alerts = discord.utils.get(server.roles, name = "Alerts")
+    #channel2 = discord.utils.get(server.channels, name= "server-updates")
+    #message2 = await channel2.get_message(451113983345164289)
+    #superseasnail = discord.utils.get(server.emojis, name="SuperSeaSnail")
+    #alerts = discord.utils.get(server.roles, name = "Alerts")
     await onlinestuff2()
    
     while True:
         await reactioncheck1()
-        await reactioncheck2()
+        #await reactioncheck2()
 
 
 async def onlinestuff2():
