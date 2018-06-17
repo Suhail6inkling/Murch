@@ -54,7 +54,7 @@ async def onlinestuff2():
     global server
     for x in server.members:
         gsheets.open()
-        y = [gsheets.lenrows(),str(member.id)]
+        y = [gsheets.lenrows(),str(x.id)]
         for z in range(0,28):
             y.append("None")
         gsheets.addrow(y)
