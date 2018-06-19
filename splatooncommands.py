@@ -442,10 +442,10 @@ For a different time zone, use the command m!salmon [time zone]""".format(descri
 
     @commands.command(pass_context=True)
     async def profile(self, ctx, person=""):
-        channel = self.client.get_channel(429010711163699200)
-        if ctx.message.channel != channel:
-            await ctx.send("Please use {} for commands".format(channel.mention))
-            return
+            channel = self.client.get_channel(429010711163699200)
+            if ctx.message.channel != channel:
+                await ctx.send("Please use {} for commands".format(channel.mention))
+                return
             if person=="":
                 person=ctx.author
             else:
