@@ -124,6 +124,10 @@ class SplatoonCommands():
 
     @commands.group(pass_context=True)
     async def stages(self, ctx):
+        channel = self.client.get_channel(429010711163699200)
+        if ctx.message.channel != channel:
+            await ctx.send("Please use {} for commands".format(channel.mention))
+            return
         if ctx.invoked_subcommand is None:
             await ctx.send("""Choose one from the following:
 ```md
@@ -321,6 +325,10 @@ Turf War
 
     @commands.command(pass_context=True)
     async def salmon(self, ctx, choice="UTC"):
+        channel = self.client.get_channel(429010711163699200)
+        if ctx.message.channel != channel:
+            await ctx.send("Please use {} for commands".format(channel.mention))
+            return
         timezones = {"UTC": 0, "BST": 3600, "PDT": -25200, "EDT": -14400, "CET": 3600, "PST": -28800, "EST": -18000, "CEST": 7200}
         number = timezones[choice]
         if number is None:
@@ -404,6 +412,10 @@ For a different time zone, use the command m!salmon [time zone]""".format(descri
 
     @commands.command(pass_context=True)
     async def splatnet(self, ctx):
+        channel = self.client.get_channel(429010711163699200)
+        if ctx.message.channel != channel:
+            await ctx.send("Please use {} for commands".format(channel.mention))
+            return
         api = twitter.Api(
         consumer_key=TCK,
         consumer_secret=TCS,
@@ -430,6 +442,10 @@ For a different time zone, use the command m!salmon [time zone]""".format(descri
 
     @commands.command(pass_context=True)
     async def profile(self, ctx, person=""):
+        channel = self.client.get_channel(429010711163699200)
+        if ctx.message.channel != channel:
+            await ctx.send("Please use {} for commands".format(channel.mention))
+            return
             if person=="":
                 person=ctx.author
             else:

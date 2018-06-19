@@ -43,21 +43,11 @@ async def onlinestuff():
     #message2 = await channel2.get_message(451113983345164289)
     #superseasnail = discord.utils.get(server.emojis, name="SuperSeaSnail")
     #alerts = discord.utils.get(server.roles, name = "Alerts")
-    await onlinestuff2()
    
     while True:
         await reactioncheck1()
         #await reactioncheck2()
 
-
-async def onlinestuff2():
-    global server
-    for x in server.members:
-        gsheets.open()
-        y = [gsheets.lenrows(),str(x.id)]
-        for z in range(0,28):
-            y.append("None")
-        gsheets.addrow(y)
 
 
 @client.event
