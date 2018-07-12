@@ -46,9 +46,9 @@ async def onlinestuff():
     B = discord.utils.get(server.roles, name="Brilliant Kid")
     C = discord.utils.get(server.roles, name="Cool Kid")
     S_emoji = u"\U0001F1F8"
-    A_emoji = u"\U0001D1E6"
-    B_emoji = u"\U0001D1E7"
-    C_emoji = u"\U0001D1E8"
+    A_emoji = u"\U0001F1E6"
+    B_emoji = u"\U0001F1E7"
+    C_emoji = u"\U0001F1E8"
     roles2 = {S_emoji: S, A_emoji: A, B_emoji: B, C_emoji: C}
 
 
