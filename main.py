@@ -78,7 +78,6 @@ async def on_member_remove(member):
 
 
 async def reactioncheck(message, roles):
-    global message1, roles
     a = []
     for x in server.members:
         a.append([x])
