@@ -39,14 +39,23 @@ async def onlinestuff():
     switchflag = u"\U0001F534"
     roles = {naflag: na, euflag: eu, wiiuflag: wiiu, switchflag: switch}
     
-    #channel2 = discord.utils.get(server.channels, name= "server-updates")
-    #message2 = await channel2.get_message(451113983345164289)
-    #superseasnail = discord.utils.get(server.emojis, name="SuperSeaSnail")
-    #alerts = discord.utils.get(server.roles, name = "Alerts")
+
+    message2 = await channel1.get_message(466670697402335234)
+    S = discord.utils.get(server.roles, name="Super Kid")
+    A = discord.utils.get(server.roles, name="Awesome Kid")
+    B = discord.utils.get(server.roles, name="Brilliant Kid")
+    C = discord.utils.get(server.roles, name="Cool Kid")
+    S_emoji = u"\U0001F1F8"
+    A_emoji = u"\U0001D1E6"
+    B_emoji = u"\U0001D1E7"
+    C_emoji = u"\U0001D1E8"
+    roles2 = {S_emoji: S, A_emoji: A, B_emoji: B, C_emoji: C}
+
+
    
     while True:
         await reactioncheck1()
-        #await reactioncheck2()
+        await reactioncheck2()
 
 
 
@@ -95,26 +104,31 @@ async def reactioncheck1():
                         print(c[0], roles[e], "-")
     
 async def reactioncheck2():
-    global message2, superseasnail, alerts
+    global message2, roles2
     a = []
     for x in server.members:
-        a.append([x,False])
+        a.append([x])
     reactions = message2.reactions
-    for reaction in [q for q in reactions if q.emoji == superseasnail]:
-        users = await reaction.users().flatten()
-        for user in users:
-            for p in a:
-                if p[0] == user:
-                    p[1] = True
-        for c in a:
-            if c[1]:
-                if alerts not in c[0].roles:
-                    await c[0].add_roles(alerts)
-                    print(c[0], alerts, "+")
-            else:
-                if alerts in c[0].roles:
-                    await c[0].remove_roles(alerts)
-                    print(c[0], alerts, "-")
+    for reaction in reactions:
+            role = roles2[reaction.emoji]
+            users = await reaction.users().flatten()
+            for user in users:
+                    for p in a:
+                        if p[0] == user:
+                            p.append(role)
+                    pass
+            pass
+    for c in a:
+        for e in roles2:
+                if roles2[e] in c:
+                    if roles2[e] not in c[0].roles:
+                        await c[0].add_roles(roles2[e])  
+                        print(c[0], roles2[e], "+")
+                else:
+                    if roles2[e] in c[0].roles:
+                        await c[0].remove_roles(roles2[e])
+                        print(c[0], roles2[e], "-")
+  
                 
 
 if __name__ == "__main__":
