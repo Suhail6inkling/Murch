@@ -10,7 +10,7 @@ except ModuleNotFoundError:
     prefix = os.environ["prefix"]
 
 
-client = commands.Bot(command_prefix=prefix,owner_id=131131701148647424)
+client = commands.Bot(command_prefix=prefix,owner_id=131131701148647424 )
 
 @client.event
 async def on_ready():
