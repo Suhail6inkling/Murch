@@ -12,7 +12,7 @@ def open():
 
 def read():
     sheet = open()
-    return sheet.get_all_values()
+    flat_list = [item for sublist in sheet.get_all_values for item in sublist]
 
 def addrank(rank):
     sheet = open()
@@ -28,4 +28,4 @@ def delrank(rank):
     listie.remove(rank)
     for counter, value in enumerate(listie):
         sheet.update_acell(f"A{str(counter)}",value)
-        
+
