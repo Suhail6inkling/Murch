@@ -7,8 +7,8 @@ class Ranks():
 
     def __init__(self, client):
         self.client = self.bot = client
-        self.ranks = gsheets.read()
-        self.rankss = [x.split(" (")[0] for x in self.ranks]
+        self.ranksss = gsheets.read()
+        self.rankss = [x.split(" (")[0] for x in self.ranksss]
         self.rank_lower = {x.lower():x for x in self.rankss}
 
     @commands.command()
