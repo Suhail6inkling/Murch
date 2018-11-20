@@ -9,7 +9,7 @@ class Ranks():
         self.client = self.bot = client
         self.ranks = gsheets.read()
         self.rankss = [x.split(" (")[0] for x in self.ranks]
-        self.rank_lower = {x.lower():x for x in self.ranksss}
+        self.rank_lower = {x.lower():x for x in self.rankss}
 
     @commands.command()
     async def ranks(self, ctx):
