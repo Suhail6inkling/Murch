@@ -9,6 +9,7 @@ class Ranks():
         self.client = self.bot = client
         self.ranks = gsheets.read()
         self.rankss = [x.split(" (")[0] for x in self.ranks]
+        self.rank_lower = {x.lower():x for x in self.ranksss}
 
     @commands.command()
     async def ranks(self, ctx):
@@ -16,16 +17,29 @@ class Ranks():
     
     @commands.command()
     async def rank(self, ctx, *, rank):
-        if rank in self.rankss:
-            await ctx.author.add_roles(discord.utils.get(ctx.guild.roles,name=rank))
+        rank = rank.lower()
+        if rank in self.rank_lower:
+            rank = self.rank_lower[rank]
+            role = discord.utils.get(ctx.guild.roles,name=rank)
+            if role in ctx.author.roles:
+                await ctx.author.remove_roles(role)
+                await ctx.send(f"{ctx.author.mention}, you have been removed from the **{role.name}** role")
+            else:
+                 await ctx.author.add_roles(role)
+                 await ctx.send(f"{ctx.author.mention}, you have been given the **{role.name}** role")
+        else: await ctx.send("That's not a rank!")
 
     @commands.command()
     @commands.has_role("Off the Hookers")
     async def delrank(self, ctx, *, rank):
-        if rank in self.rankss:
+        rank = rank.lower()
+        if rank in self.rank_lower:
+            rank = self.rank_lower[rank]
             gsheets.delrank(rank)
             self.ranks.remove(rank)
             self.rankss.remove(rank)
+            await ctx.send(f"{ctx.author.mention}, the rank has been removed")
+        else: await ctx.send("That rank isn't on the list!")
 
     @commands.command()
     @commands.has_role("Off the Hookers")
@@ -34,6 +48,7 @@ class Ranks():
             gsheets.addrank(rank)
             self.rank.append(rank)
             self.rankss.remove(rank)
+        else: await ctx.send("That rank isn't in the server! (Check case sensitivity)")
 
 
 def setup(client):
