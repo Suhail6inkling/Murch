@@ -29,7 +29,7 @@ class Ranks():
         else: await ctx.send("That's not a rank!")
 
     @commands.command()
-    @commands.has_role("Off The Hookers")
+    @commands.has_role("Agents")
     async def delrank(self, ctx, *, rank):
         rank = rank.lower()
         if rank in self.rank_lower:
