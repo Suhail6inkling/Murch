@@ -12,7 +12,8 @@ def open():
 
 def read():
     sheet = open()
-    flat_list = [item for sublist in sheet.get_all_values() for item in sublist]
+    return [item for sublist in sheet.get_all_values() for item in sublist]
+    
 
 def addrank(rank):
     sheet = open()
