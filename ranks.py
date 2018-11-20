@@ -11,12 +11,11 @@ class Ranks():
         self.rankss = [x.split(" (")[0] for x in self.ranksss]
         self.rank_lower = {x.lower():x for x in self.rankss}
 
-    @commands.command()
-    async def ranks(self, ctx):
-        await ctx.send(embed=discord.Embed(title="Ranks",description="\n".join(self.ranks)))
+       
     
     @commands.command()
-    async def rank(self, ctx, *, rank):
+    async def rank(self, ctx, *, rank=None):
+        if not rank: return await ctx.send(embed=discord.Embed(title="Ranks",description="\n".join(self.ranksss)))
         rank = rank.lower()
         if rank in self.rank_lower:
             rank = self.rank_lower[rank]
