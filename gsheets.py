@@ -12,7 +12,7 @@ def open():
 
 def read():
     sheet = open()
-    return [item for sublist in sheet.get_all_values() for item in sublist]
+    return [item for sublist in sheet.get_all_values() for item in sublist if item.strip()]
     
 
 def addrank(rank):

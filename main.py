@@ -18,6 +18,7 @@ async def on_ready():
     print("Name: {}".format(client.user.name))
     print("ID: {}".format(client.user.id))
     client.load_extension("ranks")
+    client.load_extension("debugger")
     await client.change_presence(activity = discord.Game(name="Exclusively for 'Splat Hub!'"))
     # await onlinestuff()
 
