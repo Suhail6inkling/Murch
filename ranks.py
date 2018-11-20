@@ -52,6 +52,6 @@ class Ranks():
 
 
 def setup(client):
-    client.load_extension(Ranks(client))
+    client.add_cog(Ranks(client))
 
             
