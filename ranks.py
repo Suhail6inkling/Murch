@@ -41,7 +41,7 @@ class Ranks():
         else: await ctx.send("That rank isn't on the list!")
 
     @commands.command()
-    @commands.has_role("Off The Hookers")
+    @commands.has_role("Agents")
     async def addrank(self, ctx, *, rank):
         if discord.utils.get(ctx.guild.roles, name=rank):
             gsheets.addrank(rank)
